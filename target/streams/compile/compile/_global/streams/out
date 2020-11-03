@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Administrator\Downloads\youtube-analyzer\app\views\index.scala.html:43:51: illegal start of simple expression[0m
+[0m[[0m[31merror[0m] [0m[0m                        	@for(c <- i.getComments )[0m
+[0m[[0m[31merror[0m] [0m[0m                        	                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Administrator\Downloads\youtube-analyzer\app\views\index.scala.html:51:9: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m            </table>[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

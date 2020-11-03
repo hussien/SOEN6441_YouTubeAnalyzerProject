@@ -1,0 +1,17 @@
+eclipse
+sbt
+eclipse
+compile
+run
+eclipse
+sbt eclipse
+run
+compile
+eclipse
+compile
+sbt
+compile
+eclipse
+run
+rn
+run
