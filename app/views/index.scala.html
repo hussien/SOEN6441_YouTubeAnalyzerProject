@@ -24,11 +24,15 @@
                 <thead>
                     <tr>
                     	<th class="th-sm">VID</th>
-                        <th class="th-sm">Title</th>
-                        <th class="th-sm">Channel Title</th>
-                        <th class="th-sm">Duration</th>
+                        <th class="th-sm">Video Title</th>
+                        <th class="th-sm">Owner</th>
+                        <th class="th-sm">View_Count</th>
+                        <th class="th-sm">time_lapsed</th>
                         <th class="th-sm">Similarity</th>
+                        <th class="th-sm">Sentiment</th>
+                        <!-- 
                         <th class="th-sm">Comments</th>
+                        -->
                     </tr>
                 </thead>
                 <tbody>
@@ -37,15 +41,30 @@
                     	<td>@i.getVideoId</td>
                         <td>@i.getTitle</td>
                         <td>@i.getChannelTitle</td>
+                        <td>@i.getViewsCount</td>
                         <td>@i.getDuration</td>
                         <td>@i.getSimilarity</td>
-                        <td>
-                            <!--
+                        <td><!-- @i.getSentiment-->                        
+                         @{
+								  if (i.getSentiment== 0) {
+								    <img src='assets/images/yellow_like.png'/>
+								  } else if (i.getSentiment == 1) {
+								    <img src='assets/images/green_like.png'/>
+								  } else {
+								    <img src='assets/images/red_like.png'/>
+								  }
+							}
+                        </td>
+                        <!-- 
+                        <td>@i.getEmoijIcons</td>
+                        -->
+                        <!-- <td>
                         	@for(c <- i.getComments ) {
                         		<p>@c</p>
                         	}
-                        		-->
+                        		
                         </td>
+                        -->
                     </tr>
                 }
             </table>

@@ -28,17 +28,40 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * This controller contains an action to handle HTTP requests
- * to the application's home page.
+ * This controller represents a handler for HTTP routing requests
+ * and resources such as index page
+ * @author Hussein
  */
 public class HomeController extends Controller {
-
+	/**
+	 * represents http form data model
+	 */
     private final Form<Search> form;
+    /**
+     * represents the application cashed previous search data 
+     * (application session) in a map
+     */
     private  static HashMap<String,List<SearchResult>> map_searchResults=new HashMap<>();
+    /**
+     * represents list of user cookies (user session)
+     */
     private  static List<String> lst_UsersSessionsIds=new ArrayList<>();
+    /**
+     * represents user search query results
+     */
     private  List<SearchResult> searchResults;
+    /**
+     * represents message API for play framework actors
+     */
     private MessagesApi messagesApi;
 
+    /**
+     * this method act as http form handler that retrieve form data
+     * that posted into search data model class
+     * @author Hussein
+     * @param formFactory
+     * @param messagesApi
+     */
     @Inject
     public HomeController(FormFactory formFactory, MessagesApi messagesApi) {
         this.form = formFactory.form(Search.class);
@@ -50,10 +73,13 @@ public class HomeController extends Controller {
      * The configuration in the <code>routes</code> file means that
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
+     * @author Hussein
      */
     public Result index(Http.Request request) {
         //searchResults = Lists.newArrayList();
     	String userSeesionId="";
+    	//check if user session (cookie) not found before 
+    	// and create new session 
     	if (!request.session().get("sid").isPresent())
     	{    		
     		userSeesionId=lst_UsersSessionsIds.size()+"";
@@ -63,12 +89,14 @@ public class HomeController extends Controller {
     		map_searchResults.put(userSeesionId, new ArrayList<SearchResult>());
     		System.out.println("New user SessionId="+userSeesionId);
     	}
+    	//get user session
     	else
     	{
     		userSeesionId=request.session().get("sid").orElse(null);    	
     		System.out.println("user SessionId="+userSeesionId);
     	}
     	
+    	//find user previous search results
     	searchResults=map_searchResults.get(userSeesionId);
     	if(searchResults ==null)
     	{
@@ -76,21 +104,30 @@ public class HomeController extends Controller {
     		map_searchResults.put(userSeesionId, searchResults);
     	}
     	
+    	//get http form posted data
         Form<Search> filledForm = form.bindFromRequest(request);
-
+        //apply search query
         if (StringUtils.isNotEmpty(filledForm.get().getTerm())) {
-            String[] terms = StringUtils.split(filledForm.get().getTerm(), " ");
+            /*String[] terms = StringUtils.split(filledForm.get().getTerm(), " ");
             for (String term : terms) {
                 addSearchResults(term);
-            }
+            }*/
+        	 addSearchResults(filledForm.get().getTerm());
         }
         
-        
+        //save use cookie id
         HashMap<String, String> session_map=new HashMap<>();
         session_map.put("sid",userSeesionId);
         return ok(views.html.index.render(searchResults, form, request, messagesApi.preferred(request)))
         		.withSession(session_map);
     }
+    /**
+     * this method act as cashed data service that find search 
+     * for previous cashed results instead of calling API a second time 
+     * @param term represents the search keywords
+     * @return a list of previous search items results from the cashed data
+     * @author Hussein
+     */
     private List<SearchResultItem> getPreviouseSearchResult(String term/*, String duration*/) {
     	Iterator<List<SearchResult>> it_sr=map_searchResults.values().iterator();
         while(it_sr.hasNext())
@@ -107,6 +144,13 @@ public class HomeController extends Controller {
         }
         return null;
     }
+    
+    /**
+     * this method add the new search query results into the previous cashed
+     * search queries to be able search it in next requests
+     * @param term represents the search keywords
+     * @author Hussein 
+     */
     private void addSearchResults(String term) {
         SearchResult sResult = new SearchResult();
         List<SearchResultItem> items = new ArrayList<>();

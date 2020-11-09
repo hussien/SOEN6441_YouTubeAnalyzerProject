@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/Administrator/Downloads/youtube-analyzer/conf/routes
-// @DATE:Fri Oct 30 23:01:20 EET 2020
+// @SOURCE:F:/github_repos/SOEN6441_YouTubeAnalyzerProject/conf/routes
+// @DATE:Mon Nov 09 20:47:30 EET 2020
 
 package router
 
