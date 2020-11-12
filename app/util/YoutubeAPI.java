@@ -211,7 +211,8 @@ public class YoutubeAPI {
                 sri.setSentiment(SentimentAPI.getCommentsSentiment(lst_comments));
                 //sri.setDuration(duration);
                 
-                int occurance = StringUtils.countMatches(sri.getTitle().toLowerCase(), term.toLowerCase());
+                //int occurance = StringUtils.countMatches(sri.getTitle().toLowerCase(), term.toLowerCase());
+                int occurance = SimilarityAPI.measureSimilarity(sri.getTitle(), term);
                 sri.setSimilarity(occurance);
                 items.add(sri);
             }

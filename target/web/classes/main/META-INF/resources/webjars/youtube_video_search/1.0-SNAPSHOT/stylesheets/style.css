@@ -1028,4 +1028,12 @@ legend {
         margin-bottom: 0;
         width: 100%;
     }
+    
+    .row :nth-child(odd){
+	  background-color:red;
+	}
+	.row :nth-child(even){
+	  background-color:green;
+	}
+	tr:nth-child(even) {background-color: #f2f2f2;}
 }

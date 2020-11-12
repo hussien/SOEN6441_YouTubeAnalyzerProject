@@ -6,10 +6,13 @@ import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.common.collect.Lists;
+
 import models.Search;
 import models.SearchResult;
 import models.SearchResultItem;
+
 import org.apache.commons.lang3.StringUtils;
+
 import play.api.i18n.MessagesApi;
 import play.data.Form;
 import play.data.FormFactory;
@@ -20,12 +23,15 @@ import play.mvc.Result;
 import util.YoutubeAPI;
 
 import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /**
  * This controller represents a handler for HTTP routing requests
@@ -103,6 +109,18 @@ public class HomeController extends Controller {
     		searchResults=new ArrayList<SearchResult>();
     		map_searchResults.put(userSeesionId, searchResults);
     	}
+    	    	
+    	/*CompletionStage<Void> cf =
+                CompletableFuture.runAsync(() -> {            
+                });
+    	try
+    	{
+        cf.wait();//waits until task is completed
+    	}
+    	catch (Exception ex)
+    	{
+    		ex.printStackTrace();
+    	}*/
     	
     	//get http form posted data
         Form<Search> filledForm = form.bindFromRequest(request);
@@ -114,7 +132,7 @@ public class HomeController extends Controller {
             }*/
         	 addSearchResults(filledForm.get().getTerm());
         }
-        
+    	       
         //save use cookie id
         HashMap<String, String> session_map=new HashMap<>();
         session_map.put("sid",userSeesionId);
@@ -128,7 +146,7 @@ public class HomeController extends Controller {
      * @return a list of previous search items results from the cashed data
      * @author Hussein
      */
-    private List<SearchResultItem> getPreviouseSearchResult(String term/*, String duration*/) {
+    public List<SearchResultItem> getPreviouseSearchResult(String term/*, String duration*/) {
     	Iterator<List<SearchResult>> it_sr=map_searchResults.values().iterator();
         while(it_sr.hasNext())
         {        	
@@ -151,7 +169,7 @@ public class HomeController extends Controller {
      * @param term represents the search keywords
      * @author Hussein 
      */
-    private void addSearchResults(String term) {
+    public  void addSearchResults(String term) {
         SearchResult sResult = new SearchResult();
         List<SearchResultItem> items = new ArrayList<>();
         List<SearchResultItem> prev_items=getPreviouseSearchResult(term);

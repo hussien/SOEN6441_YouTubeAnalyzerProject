@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
+import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoListResponse;
 
 import util.YoutubeAPI;
@@ -44,7 +45,7 @@ public class YoutubeAPITest {
     public void testGetSearchResult() {
         List<SearchResultItem> searchResults = YoutubeAPI.getSearchResult(SEARCH_TERM);
         Assert.assertNotNull(searchResults);
-        Assert.assertEquals(searchResults.size(),0);
+        Assert.assertEquals(searchResults.size(),10);
     }
     @Test
     public void testgetService(){
@@ -70,14 +71,21 @@ public class YoutubeAPITest {
     @Test
     public void testgetVideoInfo(){
     	VideoListResponse video=YoutubeAPI.getVideoInfo("vLnPwxZdW4Y");
-        Assert.assertNotNull(video);
+    	Assert.assertNotNull(video);
+    	List<Video> lst=video.getItems();
+    	Assert.assertNotNull(lst);
+    	Assert.assertEquals(lst.size(),1);
+    	System.out.println(lst.get(0).getContentDetails().getDuration());        
         Assert.assertEquals(video.getItems().size(),1);
+        Assert.assertEquals(lst.get(0).getContentDetails().getDuration(),"PT4H1M19S");
     }
     @Test
     public void testYoutubeSearch(){
-    	SearchListResponse result=YoutubeAPI.search("cat","");
+    	SearchListResponse result=YoutubeAPI.search("cat","");    	
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getItems().size(),10);
+        Assert.assertEquals(result.getItems().get(0).getSnippet().getTitle(),
+        "Baby Cats - Cute and Funny Cat Videos Compilation #34 | Aww Animals");		
     }
     
     @After

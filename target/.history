@@ -15,3 +15,8 @@ eclipse
 run
 rn
 run
+sbt
+run
+sbt test
+test
+jacoco

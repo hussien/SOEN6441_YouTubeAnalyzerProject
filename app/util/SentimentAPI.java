@@ -40,9 +40,9 @@ public class SentimentAPI {
      */
     public static int getHappyEmoijCount(List<String> lst_comments)
     {
-    	return getHappyEmoij().stream().map(emoj->
+    	return getHappyEmoij().parallelStream().map(emoj->
 		    	{
-		    		Integer sub_count=lst_comments.stream()
+		    		Integer sub_count=lst_comments.parallelStream()
 		        	.map(com->
 		        	{
 		        		int index=0;
@@ -69,9 +69,9 @@ public class SentimentAPI {
      */
     public static String getHappyEmoij(List<String> lst_comments)
     {
-    	return getHappyEmoij().stream().map(emoj->
+    	return getHappyEmoij().parallelStream().map(emoj->
 		    	{
-		    		String  emojs=lst_comments.stream()
+		    		String  emojs=lst_comments.parallelStream()
 		        	.map(com->
 		        	{
 		        		int index=0;
@@ -98,9 +98,9 @@ public class SentimentAPI {
      */
     public static String getSadEmoij(List<String> lst_comments)
     {
-    	return getSadEmoij().stream().map(emoj->
+    	return getSadEmoij().parallelStream().map(emoj->
 		    	{
-		    		String  emojs=lst_comments.stream()
+		    		String  emojs=lst_comments.parallelStream()
 		        	.map(com->
 		        	{
 		        		int index=0;
@@ -128,9 +128,9 @@ public class SentimentAPI {
      */
     public static int getSadEmoijCount(List<String> lst_comments)
     {
-    	return getSadEmoij().stream().map(emoj->
+    	return getSadEmoij().parallelStream().map(emoj->
 		    	{
-		    		Integer sub_count=lst_comments.stream()
+		    		Integer sub_count=lst_comments.parallelStream()
 		        	.map(com->
 		        	{
 		        		int index=0;
