@@ -109,19 +109,7 @@ public class HomeController extends Controller {
     		searchResults=new ArrayList<SearchResult>();
     		map_searchResults.put(userSeesionId, searchResults);
     	}
-    	    	
-    	/*CompletionStage<Void> cf =
-                CompletableFuture.runAsync(() -> {            
-                });
-    	try
-    	{
-        cf.wait();//waits until task is completed
-    	}
-    	catch (Exception ex)
-    	{
-    		ex.printStackTrace();
-    	}*/
-    	
+    	     	
     	//get http form posted data
         Form<Search> filledForm = form.bindFromRequest(request);
         //apply search query
@@ -130,15 +118,15 @@ public class HomeController extends Controller {
             for (String term : terms) {
                 addSearchResults(term);
             }*/
-        	 addSearchResults(filledForm.get().getTerm());
+        	//CompletableFuture.supplyAsync(() -> addSearchResults(filledForm.get().getTerm()));
+        	addSearchResults(filledForm.get().getTerm());        	        
         }
-    	       
-        //save use cookie id
         HashMap<String, String> session_map=new HashMap<>();
         session_map.put("sid",userSeesionId);
-        return ok(views.html.index.render(searchResults, form, request, messagesApi.preferred(request)))
-        		.withSession(session_map);
+    	return ok(views.html.index.render(searchResults, form, request, messagesApi.preferred(request)))
+    		.withSession(session_map);
     }
+    
     /**
      * this method act as cashed data service that find search 
      * for previous cashed results instead of calling API a second time 
@@ -188,6 +176,7 @@ public class HomeController extends Controller {
         sResult.setTerm(term);       
         searchResults.add(sResult);
     }
+    
     
 
 }

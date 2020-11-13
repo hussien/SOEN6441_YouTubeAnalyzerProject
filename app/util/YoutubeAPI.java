@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
 
 import models.SearchResult;
 import models.SearchResultItem;
@@ -186,37 +187,60 @@ public class YoutubeAPI {
         if (resp != null && resp.getItems() != null && resp.getItems().size() > 0) {
 
             List<SearchResultItem> items = new ArrayList<>();
-            for (com.google.api.services.youtube.model.SearchResult sr : resp.getItems()) {
-                SearchResultItem sri = new SearchResultItem();
-                
+            resp.getItems().stream()
+            .forEach(sr->
+            {
+            	SearchResultItem sri = new SearchResultItem();                
                 //sri.setPublishDate(new SimpleDateFormat("MM-dd-yyyy").format(sr.getSnippet().getPublishedAt()));
                 sri.setVideoId(sr.getId().getVideoId());
                 sri.setTitle(sr.getSnippet().getTitle());                
                 sri.setChannelTitle(sr.getSnippet().getChannelTitle());
                 sri.setDescription(sr.getSnippet().getDescription());
                 sri.setChannelId(sr.getSnippet().getChannelId());
-                
-                VideoListResponse  vlr=YoutubeAPI.getVideoInfo(sr.getId().getVideoId());
+                /////////////////////////////
+                CompletableFuture.supplyAsync(()->YoutubeAPI.getVideoInfo(sr.getId().getVideoId()))
+                .thenApply(x->
+                		{x.getItems().stream()
+                		.forEach(v->{
+                			sri.setViewsCount(v.getStatistics().getViewCount().toString());
+        	                sri.setDuration(v.getContentDetails().getDuration());
+                		}
+                		); return x;}
+                	);
+                ////////////////////////////
+                /*VideoListResponse  vlr=YoutubeAPI.getVideoInfo(sr.getId().getVideoId());
                 List<Video> video=vlr.getItems();
                 if(video!=null)
                 {
                 	//System.out.println("video info length="+video.size());
 	                sri.setViewsCount(video.get(0).getStatistics().getViewCount().toString());
 	                sri.setDuration(video.get(0).getContentDetails().getDuration());
-                }
-                
-                List<String> lst_comments=YoutubeAPI.getVideoComments(sr.getId().getVideoId(), 100);
+                }*/
+                /////////////////////////////
+                CompletableFuture.supplyAsync(()->YoutubeAPI.getVideoComments(sr.getId().getVideoId(), 100))
+                .thenApply(x->
+                		{
+                			sri.setEmoijIcons(SentimentAPI.getHappyEmoij(x)+"\r\n"+SentimentAPI.getSadEmoij(x));
+                            sri.setSentiment(SentimentAPI.getCommentsSentiment(x));
+                            return x;
+                		 }
+                	);
+                ////////////////////////////                
+                /*List<String> lst_comments=YoutubeAPI.getVideoComments(sr.getId().getVideoId(), 100);
                 //sri.setComments(lst_comments);
                 sri.setEmoijIcons(SentimentAPI.getHappyEmoij(lst_comments)+"\r\n"+SentimentAPI.getSadEmoij(lst_comments));
                 sri.setSentiment(SentimentAPI.getCommentsSentiment(lst_comments));
                 //sri.setDuration(duration);
+                */
                 
                 //int occurance = StringUtils.countMatches(sri.getTitle().toLowerCase(), term.toLowerCase());
                 int occurance = SimilarityAPI.measureSimilarity(sri.getTitle(), term);
                 sri.setSimilarity(occurance);
                 items.add(sri);
-            }
 
+            }
+            );
+            //for (com.google.api.services.youtube.model.SearchResult sr : resp.getItems()) {}
             return items;
         }
 

@@ -40,6 +40,7 @@ public class YoutubeAPITest {
      * this method test youtube data search api using search keyword
      * and compares number of returned query results  and test if 
      * it is null or of size 0
+     * @author Marwah
      */
     @Test
     public void testGetSearchResult() {
@@ -47,6 +48,10 @@ public class YoutubeAPITest {
         Assert.assertNotNull(searchResults);
         Assert.assertEquals(searchResults.size(),10);
     }
+    /**
+     * this method test getting youtube service instance
+     * @author Marwah 
+     */
     @Test
     public void testgetService(){
     	YouTube youTube=null;
@@ -61,6 +66,10 @@ public class YoutubeAPITest {
 		}
         Assert.assertNotNull(youTube);
     }
+    /**
+     * this method test get youtube video comments
+     * @author Marwah 
+     */
     @Test
     public void testgetVideoComments(){
     	List<String> lst=YoutubeAPI.getVideoComments("vLnPwxZdW4Y", 10);
@@ -68,6 +77,10 @@ public class YoutubeAPITest {
         Assert.assertEquals(lst.size(),10);
     }
     
+    /**
+     * this method test getting youtube video detailed Info
+     * @author Marwah 
+     */
     @Test
     public void testgetVideoInfo(){
     	VideoListResponse video=YoutubeAPI.getVideoInfo("vLnPwxZdW4Y");
@@ -79,6 +92,11 @@ public class YoutubeAPITest {
         Assert.assertEquals(video.getItems().size(),1);
         Assert.assertEquals(lst.get(0).getContentDetails().getDuration(),"PT4H1M19S");
     }
+    
+    /**
+     * this method test searching youtube by keyword
+     * @author Marwah 
+     */
     @Test
     public void testYoutubeSearch(){
     	SearchListResponse result=YoutubeAPI.search("cat","");    	
@@ -88,6 +106,10 @@ public class YoutubeAPITest {
         "Baby Cats - Cute and Funny Cat Videos Compilation #34 | Aww Animals");		
     }
     
+    /**
+     * reset test environment
+     * @author Marwah 
+     */
     @After
 	public void reset() {
     	SEARCH_TERM = null;

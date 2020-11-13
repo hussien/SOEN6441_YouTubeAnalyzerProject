@@ -12,20 +12,41 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * this class represents a test class for search youtube item data model
+ * @author Hussein
+ */
 public class TestSearchResultItem {
+	/**
+	 * youtube search item
+	 */
 	private SearchResultItem sri;
+	
+	/**
+	 * prepare test environment
+	 * @author Hussein
+	 */
 	@Before
 	public void init()
 	{
 		sri=new SearchResultItem();
 	}
+	
+	/**
+	 * test views count getter
+	 * @author Hussein
+	 */
     @Test
 	public void TestgetViewsCount() {
     	Assert.assertNotNull(sri);
     	sri.setViewsCount("10");
     	Assert.assertEquals(sri.getViewsCount(),"10");	
 	}
-	
+
+    /**
+	 * test views count setter
+	 * @author Hussein
+	 */
 	@Test
 	public void TestsetViewsCount() {
 		Assert.assertNotNull(sri);
@@ -33,6 +54,10 @@ public class TestSearchResultItem {
     	Assert.assertEquals(sri.getViewsCount(),"10");	
 	}
 
+	/**
+	 * test publish data getter
+	 * @author Hussein
+	 */
 	@Test
 	public void TestgetPublishDate() {
 		Assert.assertNotNull(sri);
@@ -40,6 +65,10 @@ public class TestSearchResultItem {
     	Assert.assertEquals(sri.getPublishDate(),"3/3/2020");	
 	}
 	
+	/**
+	 * test publish data setter
+	 * @author Hussein
+	 */
 	@Test
 	public void TestsetPublishDate() {
 		Assert.assertNotNull(sri);
@@ -171,17 +200,29 @@ public class TestSearchResultItem {
 		sri.setVideoId("");
 	}
 
+	/**
+	 * test comment list getter
+	 * @author Hussein
+	 */
 	@Test
 	public void TestgetComments() {
 		Assert.assertNotNull(sri);
 		Assert.assertEquals(sri.getComments().size(),0);
 	}
 	
+	/**
+	 * test comment list setter
+	 * @author Hussein
+	 */
 	@Test
 	public void TestsetComments () {
 		sri.setComments(new ArrayList<String>());
 		Assert.assertEquals(sri.getComments().size(),0);
 	}
+	/**
+	 * reset test environment
+	 * @author Hussein
+	 */
 	@After
 	public void reset()
 	{

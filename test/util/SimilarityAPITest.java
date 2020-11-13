@@ -14,7 +14,7 @@ import org.junit.Test;
 public class SimilarityAPITest {
 	
 	/**
-	 * test for measureSimilarity function
+	 * test for measure similarity function
 	 * @author Marwah
 	 */
 	@Test
