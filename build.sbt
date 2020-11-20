@@ -1,5 +1,5 @@
 name := """youtube_video_search"""
-organization := "com.upwork.tk"
+organization := "Folks"
 
 version := "1.0-SNAPSHOT"
 

@@ -158,23 +158,24 @@ public class HomeController extends Controller {
      * @author Hussein 
      */
     public  void addSearchResults(String term) {
-        SearchResult sResult = new SearchResult();
-        List<SearchResultItem> items = new ArrayList<>();
-        List<SearchResultItem> prev_items=getPreviouseSearchResult(term);
-        if(prev_items!=null)
-        {
-        	items.addAll(prev_items);	
-        }
-        else
-        {
-	        items.addAll(YoutubeAPI.getSearchResult(term/*, "long"*/));
-	        //items.addAll(getSearchResult(term, "medium"));
-	        //items.addAll(getSearchResult(term, "short"));        
-            items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
-        }
-        sResult.setItems(items);
-        sResult.setTerm(term);       
-        searchResults.add(sResult);
+    	    	
+	        SearchResult sResult = new SearchResult();
+	        List<SearchResultItem> items = new ArrayList<>();
+	        List<SearchResultItem> prev_items=getPreviouseSearchResult(term);
+	        if(prev_items!=null)
+	        {
+	        	items.addAll(prev_items);	
+	        }
+	        else
+	        {
+		        items.addAll(YoutubeAPI.getSearchResult(term/*, "long"*/));
+		        //items.addAll(getSearchResult(term, "medium"));
+		        //items.addAll(getSearchResult(term, "short"));        
+	            items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
+	        }
+	        sResult.setItems(items);
+	        sResult.setTerm(term);       
+	        searchResults.add(sResult);
     }
     
     

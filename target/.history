@@ -20,3 +20,5 @@ run
 sbt test
 test
 jacoco
+doc
+test
