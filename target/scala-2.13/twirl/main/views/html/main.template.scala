@@ -34,27 +34,32 @@ object main extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlF
       {
 
 
-Seq[Any](format.raw/*8.1*/("""
+Seq[Any](format.raw/*7.32*/("""
+
 """),format.raw/*9.1*/("""<html lang="en">
 <head>
-    """),format.raw/*11.58*/("""
-    """),format.raw/*12.5*/("""<title>"""),_display_(/*12.13*/title),format.raw/*12.18*/("""</title>
+ <script type="text/javascript" src=""""),_display_(/*11.39*/routes/*11.45*/.Assets.versioned("javascripts/jquery.min.js")),format.raw/*11.91*/(""""></script>
+   
+    """),format.raw/*13.58*/("""
+    """),format.raw/*14.5*/("""<title>"""),_display_(/*14.13*/title),format.raw/*14.18*/("""</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-    <link rel="stylesheet" media="screen" href=""""),_display_(/*14.50*/routes/*14.56*/.Assets.versioned("stylesheets/style.css")),format.raw/*14.98*/("""">
+    <link rel="stylesheet" media="screen" href=""""),_display_(/*16.50*/routes/*16.56*/.Assets.versioned("stylesheets/style.css")),format.raw/*16.98*/("""">
     <style>
-    table, th, td """),format.raw/*16.19*/("""{"""),format.raw/*16.20*/("""
-		  """),format.raw/*17.5*/("""border:3px dashed #6e0979;
-		"""),format.raw/*18.3*/("""}"""),format.raw/*18.4*/("""
-    """),format.raw/*19.5*/("""</style>
+    table, th, td """),format.raw/*18.19*/("""{"""),format.raw/*18.20*/("""
+		  """),format.raw/*19.5*/("""border:3px dashed #6e0979;
+		"""),format.raw/*20.3*/("""}"""),format.raw/*20.4*/("""
+    """),format.raw/*21.5*/("""</style>
+   
 </head>
 
 
     <body>
-        """),format.raw/*25.32*/("""
-        """),_display_(/*26.10*/content),format.raw/*26.17*/("""
+        """),format.raw/*28.32*/("""
+        """),_display_(/*29.10*/content),format.raw/*29.17*/("""
 
-        """),format.raw/*28.9*/("""<script src=""""),_display_(/*28.23*/routes/*28.29*/.Assets.versioned("javascripts/script.js")),format.raw/*28.71*/("""" type="text/javascript"></script>
-    </body>
+        """),format.raw/*31.9*/("""<script src=""""),_display_(/*31.23*/routes/*31.29*/.Assets.versioned("javascripts/script.js")),format.raw/*31.71*/("""" type="text/javascript"></script>
+     
+     </body>
 </html>
 """))
       }
@@ -72,11 +77,11 @@ Seq[Any](format.raw/*8.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2020-10-31T18:21:33.152
-                  SOURCE: C:/Users/Administrator/Downloads/youtube-analyzer/app/views/main.scala.html
-                  HASH: 542a1c842f48b308f62b4c826f9c1d2a3acc675d
-                  MATRIX: 1165->260|1289->291|1316->292|1372->373|1404->378|1439->386|1465->391|1635->534|1650->540|1713->582|1774->615|1803->616|1835->621|1891->650|1919->651|1951->656|2017->784|2054->794|2082->801|2119->811|2160->825|2175->831|2238->873
-                  LINES: 32->7|37->8|38->9|40->11|41->12|41->12|41->12|43->14|43->14|43->14|45->16|45->16|46->17|47->18|47->18|48->19|53->25|54->26|54->26|56->28|56->28|56->28|56->28
+                  DATE: 2020-12-05T21:26:28.522
+                  SOURCE: I:/SOEN6441_YouTubeAnalyzerProject_v2.3/app/views/main.scala.html
+                  HASH: b8e1520c000093a9f44a0feb24e2ee117a2913a0
+                  MATRIX: 1170->266|1295->296|1325->300|1416->364|1431->370|1498->416|1548->491|1581->497|1616->505|1642->510|1814->655|1829->661|1892->703|1955->738|1984->739|2017->745|2074->775|2102->776|2135->782|2211->921|2249->932|2277->939|2316->951|2357->965|2372->971|2435->1013
+                  LINES: 32->7|37->7|39->9|41->11|41->11|41->11|43->13|44->14|44->14|44->14|46->16|46->16|46->16|48->18|48->18|49->19|50->20|50->20|51->21|57->28|58->29|58->29|60->31|60->31|60->31|60->31
                   -- GENERATED --
               */
           

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:F:/github_repos/SOEN6441_YouTubeAnalyzerProject/conf/routes
-// @DATE:Mon Nov 09 20:47:30 EET 2020
+// @DATE:Sat Dec 05 23:13:43 EET 2020
 
 package controllers;
 

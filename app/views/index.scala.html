@@ -3,6 +3,7 @@
 
 @main("Youtube Search API") {
 
+ <script src="@routes.Assets.versioned("javascripts/youtube.js")" type="text/javascript"></script> 
     <div class="s003">
     @helper.form(routes.HomeController.index()) {
         <div class="inner-form">
@@ -10,12 +11,18 @@
                 <input id="search" type="text" name="term" placeholder="Enter Search Keywords..." />
             </div>
             <div class="input-field third-wrap">
-                <button class="btn-search" type="submit" >
+                <button class="btn-search" value="cool" type="submit" >
                     GO
                 </button>
             </div>
         </div>
-
+        
+         <div id = "output"></div> 
+        <div data-ws-url="@routes.HomeController.socket("sdds")">
+        <div data-ws-data>
+			</div>
+        </div>
+ <div class="s004">
         @for(sr <- searchResults) {
             <br/>
             <h1 class="center">Search Query is "@sr.getTerm"</h1>
@@ -55,20 +62,11 @@
 								  }
 							}
                         </td>
-                        <!-- 
-                        <td>@i.getEmoijIcons</td>
-                        -->
-                        <!-- <td>
-                        	@for(c <- i.getComments ) {
-                        		<p>@c</p>
-                        	}
-                        		
-                        </td>
-                        -->
                     </tr>
                 }
             </table>
         }
     }
+    </div>
     </div>
 }

@@ -8,6 +8,8 @@
 
 <html lang="en">
 <head>
+ <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery.min.js")"></script>
+   
     @* Here's where we render the page title `String`. *@
     <title>@title</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
@@ -17,6 +19,7 @@
 		  border:3px dashed #6e0979;
 		}
     </style>
+   
 </head>
 
 
@@ -26,5 +29,6 @@
         @content
 
         <script src="@routes.Assets.versioned("javascripts/script.js")" type="text/javascript"></script>
-    </body>
+     
+     </body>
 </html>
