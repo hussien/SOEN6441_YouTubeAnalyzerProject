@@ -3,6 +3,7 @@ Team No: 8
 Team Members:
 1-Hussein Abdallah 
 2-Jagan
+3-Marwah Alsadun
 
 Individual Part
 1-Hussein Abdallah -> Part D(Video Sentiment)
