@@ -2,12 +2,9 @@ Team Name: Folks United
 Team No: 8
 Team Members:
 1-Hussein Abdallah 
-2-Omar Ahmed
-3-Marwah Alsadun
-4-Shah Mohammad Mostakim 
+2-Jagan
 
 Individual Part
 1-Hussein Abdallah -> Part D(Video Sentiment)
-2-Omar Ahmed -> Part C(Owner/Channel Videos)
+2-Jagan -> Part C(Owner/Channel Videos)
 3-Marwah Alsadun -> Part B(Similar Content)
-4-Shah Mohammad Mostakim -> Part A( Owner/Channel Profile:)
