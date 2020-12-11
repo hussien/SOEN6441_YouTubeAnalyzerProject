@@ -1,4 +1,4 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(I:\SOEN6441_YouTubeAnalyzerProject_v2.4\conf\application.conf,I:\SOEN6441_YouTubeAnalyzerProject_v2.4\target\scala-2.13\classes\application.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(I:\SOEN6441_YouTubeAnalyzerProject_v2.4\conf\logback.xml,I:\SOEN6441_YouTubeAnalyzerProject_v2.4\target\scala-2.13\classes\logback.xml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(I:\SOEN6441_YouTubeAnalyzerProject_v2.4\conf\routes,I:\SOEN6441_YouTubeAnalyzerProject_v2.4\target\scala-2.13\classes\routes)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(F:\github_repos\SOEN6441_YouTubeAnalyzerProject\conf\application.conf,F:\github_repos\SOEN6441_YouTubeAnalyzerProject\target\scala-2.13\classes\application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(F:\github_repos\SOEN6441_YouTubeAnalyzerProject\conf\logback.xml,F:\github_repos\SOEN6441_YouTubeAnalyzerProject\target\scala-2.13\classes\logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(F:\github_repos\SOEN6441_YouTubeAnalyzerProject\conf\routes,F:\github_repos\SOEN6441_YouTubeAnalyzerProject\target\scala-2.13\classes\routes)[0m
