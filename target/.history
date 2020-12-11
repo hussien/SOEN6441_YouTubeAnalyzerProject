@@ -41,3 +41,6 @@ cls
 clean
 compile
 run
+compile
+clean
+compile
