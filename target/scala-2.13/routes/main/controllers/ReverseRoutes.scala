@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:F:/github_repos/SOEN6441_YouTubeAnalyzerProject/conf/routes
-// @DATE:Mon Nov 09 20:47:30 EET 2020
+// @SOURCE:I:/SOEN6441_YouTubeAnalyzerProject_v2.4/conf/routes
+// @DATE:Fri Dec 11 03:03:58 EET 2020
 
 import play.api.mvc.Call
 
@@ -24,16 +24,49 @@ package controllers {
       Call("GET", _prefix)
     }
   
+    // @LINE:10
+    def getChannellInfo(ID:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "channelInfo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("ID", ID)))
+    }
+  
+    // @LINE:7
+    def getResultWithTerm(term:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "get/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("term", term)))
+    }
+  
+    // @LINE:8
+    def socket(term:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "ws/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("term", term)))
+    }
+  
   }
 
   // @LINE:9
-  class ReverseAssets(_prefix: => String) {
+  class ReverseSimilarityController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
     // @LINE:9
+    def similarity(term:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "similarity/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("term", term)))
+    }
+  
+  }
+
+  // @LINE:13
+  class ReverseAssets(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:13
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))

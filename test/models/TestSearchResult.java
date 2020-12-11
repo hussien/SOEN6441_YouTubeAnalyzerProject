@@ -8,45 +8,53 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestSearchResult {
-	SearchResult sr;	
+public class TestSearchResult
+{
+
+	SearchResult sr;
+
 	@Before
 	public void init()
 	{
-		sr=new SearchResult();
+		sr = new SearchResult();
 		sr.getItems().add(new SearchResultItem());
 	}
+
 	@Test
-	public void TestgetItems() {
-        Assert.assertNotNull(sr);
-        Assert.assertEquals(sr.getItems().size(), 1);
-     }
+	public void TestgetItems()
+	{
+		Assert.assertNotNull(sr);
+		Assert.assertEquals(sr.getItems().size(), 1);
+	}
+
 	@Test
-    public void TestsetItems() {
+	public void TestsetItems()
+	{
 		Assert.assertNotNull(sr);
 		sr.setItems(null);
-        Assert.assertEquals(sr.getItems(),null);
-    }
-	
+		Assert.assertEquals(sr.getItems(), null);
+	}
+
 	@Test
-    public void TestgetTerm() {
-		Assert.assertNotNull(sr);
-		sr.setTerm("word");
-		Assert.assertEquals(sr.getTerm(),"word");
-    }
-	
-	@Test
-    public void TestsetTerm() 
-    {
-		Assert.assertNotNull(sr);
-		sr.setTerm("word");
-		Assert.assertEquals(sr.getTerm(),"word");
-    }
-	
-	@After
-	public  void reset()
+	public void TestgetTerm()
 	{
-		sr=null;
+		Assert.assertNotNull(sr);
+		sr.setTerm("word");
+		Assert.assertEquals(sr.getTerm(), "word");
+	}
+
+	@Test
+	public void TestsetTerm()
+	{
+		Assert.assertNotNull(sr);
+		sr.setTerm("word");
+		Assert.assertEquals(sr.getTerm(), "word");
+	}
+
+	@After
+	public void reset()
+	{
+		sr = null;
 	}
 
 }

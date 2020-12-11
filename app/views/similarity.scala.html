@@ -1,0 +1,37 @@
+@import play.mvc.Http.Request
+@(searchResults: List[TitleAndCount], form: Form[Search])(implicit request: Request, messages: Messages)
+
+@main("Youtube Search API") {
+
+<style>
+
+
+</style>
+
+ <script src="@routes.Assets.versioned("javascripts/youtube.js")" type="text/javascript"></script> 
+    <div class="s003">
+ <div class="s004">
+            <br/>
+            
+			<br>
+			<br>
+			<br>
+            <table id="dtBasicExample" class="table table-striped" cellspacing="0" width="100%" style="text-align:center;">
+                <thead>
+                    <tr>
+                        <th class="th-sm">Video Title</th>
+                        <th class="th-sm">Frequency</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                @for(i <- searchResults) {
+                    <tr class="row">
+                    	<td>@i.getTitle</td>
+                    	<td>@i.getCount</td>
+                    </tr>
+                }
+            </table>
+    </div>
+    </div>
+}
