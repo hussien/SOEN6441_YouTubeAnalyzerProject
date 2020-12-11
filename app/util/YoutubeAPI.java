@@ -205,7 +205,7 @@ public class YoutubeAPI
 	}
 
 	/**
-	 * search for youtube videos using keywords
+	 * search for latest 10 youtube videos using keywords
 	 * and fill result into SearchResultItem
 	 * that represents a data model for youtube search response record
 	 * 
@@ -214,10 +214,25 @@ public class YoutubeAPI
 	 * @return list of youtube SearchResultItem data model
 	 * @author Hussein
 	 */
-
-	public static List<SearchResultItem> getSearchResult(String term/*, String duration*/)
+	public static List<SearchResultItem> getSearchResult(String term)
 	{
-		SearchListResponse resp = YoutubeAPI.search(term, "", 10L);
+		return getSearchResult(term,10L);
+	}
+	/**
+	 * search for youtube videos using keywords
+	 * and fill result into SearchResultItem
+	 * that represents a data model for youtube search response record
+	 * 
+	 * @param term
+	 *            youtube search keyword
+	 *@param Count
+	 *            number of videos to return;
+	 * @return list of youtube SearchResultItem data model
+	 * @author Hussein
+	 */
+	public static List<SearchResultItem> getSearchResult(String term,Long Count)
+	{
+		SearchListResponse resp = YoutubeAPI.search(term, "", Count);
 
 		if (resp != null && resp.getItems() != null && resp.getItems().size() > 0)
 		{
@@ -292,6 +307,11 @@ public class YoutubeAPI
 
 		return null;
 	}
+	
+	/**
+	 * search for youtube channel search
+	 * @author Jagan
+	 */
 	public static ChannelListResponse searchChannel(String channelID){
 		try{
 			YouTube youtubeService = getService();
@@ -310,7 +330,10 @@ public class YoutubeAPI
 		}
 		return null;
 	}
-
+	/**
+	 * search for youtube channel
+	 * @author Jagan
+	 */
 	public static ChannelResponse getChannelResult(String channelID)
 	{
 		ChannelListResponse resp = YoutubeAPI.searchChannel(channelID);

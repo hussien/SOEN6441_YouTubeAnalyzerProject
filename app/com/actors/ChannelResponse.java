@@ -1,5 +1,9 @@
 package com.actors;
 
+/**
+ * ChannelResponse Model Object 
+ * @author Jagan
+ */
 public class ChannelResponse {
     String title;
     String description;

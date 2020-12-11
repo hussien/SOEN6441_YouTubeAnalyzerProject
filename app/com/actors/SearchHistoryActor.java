@@ -6,6 +6,10 @@ import com.google.inject.Singleton;
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 
+/**
+ * Search History Actor 
+ * @author Hussein
+ */
 @Singleton
 public class SearchHistoryActor extends AbstractActor
 {

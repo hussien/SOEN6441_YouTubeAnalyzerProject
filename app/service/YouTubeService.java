@@ -9,21 +9,28 @@ import com.actors.ChannelResponse;
 import models.SearchResultItem;
 import util.YoutubeAPI;
 
+/**
+ * YouTube Service Injector 
+ * @author Hussein
+ */
 public class YouTubeService
 {
 
 	@Inject
 	YoutubeAPI api;
-
 	public List<SearchResultItem> getSearchResult(String term)
+	{
+		return getSearchResult(term,10L);
+	}
+	public List<SearchResultItem> getSearchResult(String term,Long Count)
 	{
 		if (term == null)
 			return null;
-
-		List<SearchResultItem> searchResult = api.getSearchResult(term);
+		
+		List<SearchResultItem> searchResult = api.getSearchResult(term,Count);
 
 		if (searchResult != null)
-			searchResult.stream().distinct().collect(Collectors.toList());
+			searchResult=searchResult.stream().distinct().collect(Collectors.toList());
 
 		return searchResult;
 	}

@@ -12,8 +12,16 @@ import akka.actor.typed.javadsl.AbstractBehavior;
 import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
+/**
+ * Sentiment Actor 
+ * @author Hussein
+ */
 public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentiment>
 {
+	/**
+	 * Sentiment Message 
+	 * @author Hussein
+	 */
 	public static final class Sentiment
 	{
 
@@ -29,7 +37,8 @@ public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentim
 		}
 
 		public final ActorRef<SentimentAPIActor.Sentiment> replyTo;
-
+		
+		
 		public Sentiment(List<String> lst_comments, ActorRef<SentimentAPIActor.Sentiment> replyTo)
 		{
 			this.lst_comments= lst_comments;
@@ -42,6 +51,10 @@ public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentim
 		return Props.create(SentimentAPIActor.class);
 	}
 	
+	/**
+	 * Sentiment Actor create 
+	 * @author Hussein
+	 */
 	public static Behavior<SentimentAPIActor.Sentiment> create()
 	{
 		return Behaviors.setup((ctx) -> new SentimentAPIActor(ctx));
@@ -67,12 +80,20 @@ public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentim
 
 	
 	
+	/**
+	 * Sentiment Actor receive 
+	 * @author Hussein
+	 */
 	@Override
 	public Receive<SentimentAPIActor.Sentiment> createReceive()
 	{
 		return newReceiveBuilder().onMessage(Sentiment.class, this::measureSentiment).build();
 	}
 
+	/**
+	 * Sentiment Actor measure Sentiment class
+	 * @author Hussein
+	 */
 	private Behavior<Sentiment> measureSentiment(Sentiment message)
 	{
 			int Sentiment_class=SentimentAPI.getCommentsSentiment(message.lst_comments);

@@ -14,6 +14,10 @@ import akka.http.impl.model.parser.HeaderParser.Result;
 import models.SearchResult;
 import scala.compat.java8.FutureConverters;
 
+/**
+ * SearchHistory Model Object 
+ * @author Hussein
+ */
 public class SearchHistory
 {
 

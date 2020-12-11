@@ -5,6 +5,10 @@ import com.actors.SearchHistory.UserHistory;
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 
+/**
+ * Child Search Term Actor 
+ * @author Hussein
+ */
 public class ChildActor extends AbstractActor
 {
 

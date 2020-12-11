@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -35,12 +36,16 @@ import play.mvc.Result;
 import play.mvc.WebSocket;
 import scala.compat.java8.FutureConverters;
 import service.YouTubeService;
+
 import com.actors.ChildActor;
 import com.actors.ChannelInfoActor;
+
 import static akka.pattern.Patterns.ask;
 
 
+
 import com.actors.ChannelResponse;
+
 import service.YouTubeService;
 /**
  * This controller represents a handler for HTTP routing requests
@@ -133,6 +138,8 @@ public class HomeController extends Controller
 
 	private CompletionStage<List<SearchResultItem>> calculateResponse(String term)
 	{
+		
+			   CompletableFuture.completedFuture(youTubeService.getSearchResult(term,20L));
 		return CompletableFuture.completedFuture(youTubeService.getSearchResult(term));
 				
 	}
@@ -169,7 +176,10 @@ public class HomeController extends Controller
 	{
 		return ActorFlow.actorRef(Supervisor::getProps1, actorSystem, materializer);
 	}
-
+	/**
+	 * home page router method
+	 * @author Hussein
+	 */
 	public CompletionStage<Result> index(Http.Request request)
 	{
 
@@ -293,31 +303,39 @@ public class HomeController extends Controller
 		searchResults.add(sResult);
 		saveUserInfo(userSeesionId, searchResults);
 	}
-
+	/**
+	 * addSearchResultsForAdd
+	 * @author Jagan
+	 */
 	public void addSearchResultsForAdd(List<SearchResultItem> termResult, String term)
 	{
-		SearchResult sResult = new SearchResult();
-		List<SearchResultItem> items = new ArrayList<>();
+		
 		List<SearchResultItem> prev_items = getPreviouseSearchResult(term);
 		if (prev_items != null)
 		{
-			items.addAll(prev_items);
+			prev_items.addAll(termResult);
+			prev_items=prev_items.stream().distinct().collect(Collectors.toList());
+			prev_items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
 		}
 		else
 		{
+			SearchResult sResult = new SearchResult();
+			List<SearchResultItem> items = new ArrayList<>();
 			items.addAll(termResult);
 			items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
+			sResult.setItems(items);
+			sResult.setTerm(term);
+			if (searchResults == null)
+			{
+				searchResults = new ArrayList<SearchResult>();
+			}
+			searchResults.add(sResult);
 		}
-		sResult.setItems(items);
-		sResult.setTerm(term);
-
-		if (searchResults == null)
-		{
-			searchResults = new ArrayList<SearchResult>();
-		}
-
-		searchResults.add(sResult);
 	}
+	/**
+	 * getChannellInfo
+	 * @author Jagan
+	 */
 	public CompletionStage<Result> getChannelInfo(String channelID){
 //		youTubeService.getChannelResult(channelID);
 //		return ok("Your new application is ready.");
@@ -325,7 +343,10 @@ public class HomeController extends Controller
 				.thenApply(response -> ok((String) response));
 
 	}
-
+	/**
+	 * getChannellInfo
+	 * @author Jagan
+	 */
 	public Result getChannellInfo(String channelID){
 		ChannelResponse channelResponse = youTubeService.getChannelResult(channelID);
 		System.out.println(channelResponse.getCountry());

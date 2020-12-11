@@ -9,6 +9,10 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 
+/**
+ * Similarity Actor 
+ * @author Marwah
+ */
 public class SimilarityAPIActor extends AbstractBehavior<SimilarityAPIActor.Similarity>
 {
 

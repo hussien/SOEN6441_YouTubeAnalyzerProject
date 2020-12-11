@@ -9,6 +9,10 @@ import com.google.inject.Singleton;
 import service.YouTubeService;
 import util.YoutubeAPI;
 
+/**
+ * Channel Info Actor  
+ * @author Jagan
+ */
 @Singleton
 public class ChannelInfoActor extends AbstractActor {
     public static final class ChannelInfo {

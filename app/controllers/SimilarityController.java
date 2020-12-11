@@ -30,6 +30,10 @@ import play.mvc.Result;
 import service.YouTubeService;
 import util.YoutubeAPI;
 
+/**
+ * SimilarityController class
+ * @author Marwah
+ */
 public class SimilarityController extends Controller
 {
 
@@ -48,7 +52,16 @@ public class SimilarityController extends Controller
 
 	@Inject
 	YoutubeAPI api;
-
+	public SimilarityController()
+	{
+		this.form = null;
+		this.messagesApi = null;
+		this.youTubeService = null;
+		this.httpExecutionContext = null;
+		this.actorSystem = null;
+		this.materializer = null;
+		this.api = null;
+	}
 	//
 	@Inject
 	public SimilarityController(FormFactory formFactory, MessagesApi messagesApi,

@@ -44,3 +44,7 @@ run
 compile
 clean
 compile
+sbt jacoco
+ jacoco
+compile
+run

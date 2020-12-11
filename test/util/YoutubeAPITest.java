@@ -119,7 +119,7 @@ public class YoutubeAPITest
 	@Test
 	public void testYoutubeSearch()
 	{
-		SearchListResponse result = YoutubeAPI.search("cat", "");
+		SearchListResponse result = YoutubeAPI.search("cat", "",10L);
 		Assert.assertNotNull(result);
 		Assert.assertEquals(result.getItems().size(), 10);
 		Assert.assertEquals(result.getItems().get(0).getSnippet().getTitle(),
