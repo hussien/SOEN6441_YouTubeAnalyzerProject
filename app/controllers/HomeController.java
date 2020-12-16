@@ -186,7 +186,16 @@ public class HomeController extends Controller
 				},
 				httpExecutionContext.current());
 	}
-
+	public CompletionStage<Result> updateUI(Http.Request request)
+	{
+		return calculateResponse(null)
+			.thenApplyAsync(
+				answer -> {
+					return ok(Json.toJson(searchResults));
+				},
+				httpExecutionContext.current());
+	}
+	
 	/*
 	 * already bind to "ws://localhost:9000/ws/{termName}"
 	 * */
@@ -194,7 +203,7 @@ public class HomeController extends Controller
 	 * search for youtube using Websocket and Actor flow
 	 * @author Hussein
 	 */
-	public WebSocket socket(String termName)
+	public WebSocket socket()
 	{
 		return WebSocket.Json
 			.acceptOrResult(this::createActorFlow);
@@ -336,6 +345,7 @@ public class HomeController extends Controller
 			SearchResult sResult = new SearchResult();
 			List<SearchResultItem> items = new ArrayList<>();
 			items.addAll(termResult);
+			items=items.stream().distinct().collect(Collectors.toList());
 			items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
 			sResult.setItems(items);
 			sResult.setTerm(term);
@@ -376,6 +386,7 @@ public class HomeController extends Controller
 			SearchResult sResult = new SearchResult();
 			List<SearchResultItem> items = new ArrayList<>();
 			items.addAll(termResult);
+			items=items.stream().distinct().collect(Collectors.toList());
 			items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
 			sResult.setItems(items);
 			sResult.setTerm(term);

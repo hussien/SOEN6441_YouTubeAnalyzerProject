@@ -1,2 +1,4 @@
-[0m[[0m[0minfo[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\SimilarityController.java: F:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\SimilarityController.java uses unchecked or unsafe operations.[0m
-[0m[[0m[0minfo[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\SimilarityController.java: Recompile with -Xlint:unchecked for details.[0m
+[0m[[0m[31merror[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\HomeController.java:341:1: incompatible types: void cannot be converted to java.util.List<models.SearchResultItem>[0m
+[0m[[0m[31merror[0m] [0m[0mprev_items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed())[0m
+[0m[[0m[31merror[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\HomeController.java:382:1: incompatible types: void cannot be converted to java.util.List<models.SearchResultItem>[0m
+[0m[[0m[31merror[0m] [0m[0mprev_items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed())[0m

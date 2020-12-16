@@ -5,7 +5,8 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index(request: Request)
 GET     /get/:term                  controllers.HomeController.getResultWithTerm(term: String, request: Request)
-GET     /ws/:term                   controllers.HomeController.socket(term: String)
+GET     /update 					controllers.HomeController.updateUI(request: Request)
+GET     /ws							controllers.HomeController.socket()
 GET     /similarity/:term            controllers.SimilarityController.similarity(term: String, request: Request)
 GET     /channelInfo/:ID           	 controllers.HomeController.getChannellInfo(ID: String)
 

@@ -3,14 +3,15 @@ var tableData;
 
 function httpGet(term)
 {
-
-    var webSocket = new WebSocket('ws://http://localhost:9000/get/'+term);
-           console.log(webSocket);
+    var webSocket = new WebSocket('ws://localhost:9000/ws');
+    console.log(webSocket);
     webSocket.onmessage = function(event) {
-        };
+    	log(event)
+    };
         
 	url = 'http://localhost:9000/get/'+term;
-	
+	if(term=='')
+		url = 'http://localhost:9000/update';
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", url, false );
     xmlHttp.send( null );

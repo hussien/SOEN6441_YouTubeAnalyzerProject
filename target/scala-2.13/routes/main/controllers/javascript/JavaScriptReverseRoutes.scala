@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:F:/github_repos/SOEN6441_YouTubeAnalyzerProject/conf/routes
-// @DATE:Fri Dec 11 06:07:37 EET 2020
+// @DATE:Wed Dec 16 22:03:35 EET 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -19,26 +19,6 @@ package controllers.javascript {
     }
 
   
-    // @LINE:6
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
-    // @LINE:10
-    def getChannellInfo: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.getChannellInfo",
-      """
-        function(ID0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "channelInfo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("ID", ID0))})
-        }
-      """
-    )
-  
     // @LINE:7
     def getResultWithTerm: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.getResultWithTerm",
@@ -49,19 +29,49 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:8
+    // @LINE:11
+    def getChannellInfo: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.getChannellInfo",
+      """
+        function(ID0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "channelInfo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("ID", ID0))})
+        }
+      """
+    )
+  
+    // @LINE:9
     def socket: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.socket",
       """
-        function(term0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ws/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("term", term0))})
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ws"})
+        }
+      """
+    )
+  
+    // @LINE:8
+    def updateUI: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.updateUI",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "update"})
+        }
+      """
+    )
+  
+    // @LINE:6
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
         }
       """
     )
   
   }
 
-  // @LINE:9
+  // @LINE:10
   class ReverseSimilarityController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -69,7 +79,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:9
+    // @LINE:10
     def similarity: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SimilarityController.similarity",
       """
@@ -81,7 +91,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:13
+  // @LINE:14
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -89,7 +99,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:13
+    // @LINE:14
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

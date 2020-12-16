@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:F:/github_repos/SOEN6441_YouTubeAnalyzerProject/conf/routes
-// @DATE:Fri Dec 11 06:07:37 EET 2020
+// @DATE:Wed Dec 16 22:03:35 EET 2020
 
 package router
 
@@ -16,9 +16,9 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   HomeController_2: controllers.HomeController,
-  // @LINE:9
+  // @LINE:10
   SimilarityController_0: controllers.SimilarityController,
-  // @LINE:13
+  // @LINE:14
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -27,9 +27,9 @@ class Routes(
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
     HomeController_2: controllers.HomeController,
-    // @LINE:9
+    // @LINE:10
     SimilarityController_0: controllers.SimilarityController,
-    // @LINE:13
+    // @LINE:14
     Assets_1: controllers.Assets
   ) = this(errorHandler, HomeController_2, SimilarityController_0, Assets_1, "/")
 
@@ -46,7 +46,8 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index(request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """get/""" + "$" + """term<[^/]+>""", """controllers.HomeController.getResultWithTerm(term:String, request:Request)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ws/""" + "$" + """term<[^/]+>""", """controllers.HomeController.socket(term:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """update""", """controllers.HomeController.updateUI(request:Request)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ws""", """controllers.HomeController.socket()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """similarity/""" + "$" + """term<[^/]+>""", """controllers.SimilarityController.similarity(term:String, request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """channelInfo/""" + "$" + """ID<[^/]+>""", """controllers.HomeController.getChannellInfo(ID:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
@@ -98,28 +99,48 @@ class Routes(
   )
 
   // @LINE:8
-  private[this] lazy val controllers_HomeController_socket2_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("ws/"), DynamicPart("term", """[^/]+""",true)))
+  private[this] lazy val controllers_HomeController_updateUI2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("update")))
   )
-  private[this] lazy val controllers_HomeController_socket2_invoker = createInvoker(
-    HomeController_2.socket(fakeValue[String]),
+  private[this] lazy val controllers_HomeController_updateUI2_invoker = createInvoker(
+    
+    (req:play.mvc.Http.Request) =>
+      HomeController_2.updateUI(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
-      "socket",
-      Seq(classOf[String]),
+      "updateUI",
+      Seq(classOf[play.mvc.Http.Request]),
       "GET",
-      this.prefix + """ws/""" + "$" + """term<[^/]+>""",
+      this.prefix + """update""",
       """""",
       Seq()
     )
   )
 
   // @LINE:9
-  private[this] lazy val controllers_SimilarityController_similarity3_route = Route("GET",
+  private[this] lazy val controllers_HomeController_socket3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("ws")))
+  )
+  private[this] lazy val controllers_HomeController_socket3_invoker = createInvoker(
+    HomeController_2.socket(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "socket",
+      Nil,
+      "GET",
+      this.prefix + """ws""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:10
+  private[this] lazy val controllers_SimilarityController_similarity4_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("similarity/"), DynamicPart("term", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_SimilarityController_similarity3_invoker = createInvoker(
+  private[this] lazy val controllers_SimilarityController_similarity4_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
       SimilarityController_0.similarity(fakeValue[String], fakeValue[play.mvc.Http.Request]),
@@ -135,11 +156,11 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_HomeController_getChannellInfo4_route = Route("GET",
+  // @LINE:11
+  private[this] lazy val controllers_HomeController_getChannellInfo5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("channelInfo/"), DynamicPart("ID", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_getChannellInfo4_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_getChannellInfo5_invoker = createInvoker(
     HomeController_2.getChannellInfo(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -153,11 +174,11 @@ class Routes(
     )
   )
 
-  // @LINE:13
-  private[this] lazy val controllers_Assets_versioned5_route = Route("GET",
+  // @LINE:14
+  private[this] lazy val controllers_Assets_versioned6_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned5_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned6_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -189,28 +210,35 @@ class Routes(
       }
   
     // @LINE:8
-    case controllers_HomeController_socket2_route(params@_) =>
-      call(params.fromPath[String]("term", None)) { (term) =>
-        controllers_HomeController_socket2_invoker.call(HomeController_2.socket(term))
+    case controllers_HomeController_updateUI2_route(params@_) =>
+      call { 
+        controllers_HomeController_updateUI2_invoker.call(
+          req => HomeController_2.updateUI(req))
       }
   
     // @LINE:9
-    case controllers_SimilarityController_similarity3_route(params@_) =>
-      call(params.fromPath[String]("term", None)) { (term) =>
-        controllers_SimilarityController_similarity3_invoker.call(
-          req => SimilarityController_0.similarity(term, req))
+    case controllers_HomeController_socket3_route(params@_) =>
+      call { 
+        controllers_HomeController_socket3_invoker.call(HomeController_2.socket())
       }
   
     // @LINE:10
-    case controllers_HomeController_getChannellInfo4_route(params@_) =>
-      call(params.fromPath[String]("ID", None)) { (ID) =>
-        controllers_HomeController_getChannellInfo4_invoker.call(HomeController_2.getChannellInfo(ID))
+    case controllers_SimilarityController_similarity4_route(params@_) =>
+      call(params.fromPath[String]("term", None)) { (term) =>
+        controllers_SimilarityController_similarity4_invoker.call(
+          req => SimilarityController_0.similarity(term, req))
       }
   
-    // @LINE:13
-    case controllers_Assets_versioned5_route(params@_) =>
+    // @LINE:11
+    case controllers_HomeController_getChannellInfo5_route(params@_) =>
+      call(params.fromPath[String]("ID", None)) { (ID) =>
+        controllers_HomeController_getChannellInfo5_invoker.call(HomeController_2.getChannellInfo(ID))
+      }
+  
+    // @LINE:14
+    case controllers_Assets_versioned6_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned5_invoker.call(Assets_1.versioned(path, file))
+        controllers_Assets_versioned6_invoker.call(Assets_1.versioned(path, file))
       }
   }
 }
