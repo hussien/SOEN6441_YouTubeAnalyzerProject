@@ -48,3 +48,9 @@ sbt jacoco
  jacoco
 compile
 run
+compile
+run
+compile
+run
+compile
+run

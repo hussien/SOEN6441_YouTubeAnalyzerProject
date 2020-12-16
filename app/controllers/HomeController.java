@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,8 +40,13 @@ import service.YouTubeService;
 
 import com.actors.ChildActor;
 import com.actors.ChannelInfoActor;
-
+import com.actors.SimilarityAPIActor;
+import com.actors.SimilarityAPIActor.Similarity;
+import com.actors.SentimentAPIActor;
+import com.actors.SentimentAPIActor.Sentiment;
 import static akka.pattern.Patterns.ask;
+
+
 
 
 
@@ -90,7 +96,17 @@ public class HomeController extends Controller
 	YouTubeService youTubeService;
 	private final ActorSystem actorSystem;
 	private final Materializer materializer;
-
+	
+	/**
+	 * COntroller constructor that initialize AKKA Actor system and youtube API service
+	 * @param formFactory
+	 * @param messagesApi
+	 * @param youTubeService
+	 * @param ec
+	 * @param actorSystem
+	 * @param materializer
+	 * @author Hussein
+	 */
 	@Inject
 	public HomeController(FormFactory formFactory, MessagesApi messagesApi,
 		YouTubeService youTubeService, HttpExecutionContext ec, ActorSystem actorSystem, Materializer materializer)
@@ -115,39 +131,53 @@ public class HomeController extends Controller
 	 */
 
 	ActorRef searchHistoryActor;
+	ActorRef SentimentActor;
+	ActorRef similarityActor;
 
 	ActorSystem system = ActorSystem.create();
-
 	final ActorRef supervisor = system.actorOf(Supervisor.getProps(), "supervisor");
 	final ActorRef channelInfoActor = system.actorOf(ChannelInfoActor.getProps());
-
+	
 	@Inject
 	public void Application(ActorSystem system)
 	{
 		searchHistoryActor = system.actorOf(SearchHistoryActor.getProps());
+		SentimentActor=system.actorOf(SentimentAPIActor.getProps());		
 	}
-
+	
+	/**
+	 * return the saved user search info from searchHistoryActor
+	 * @author Hussein
+	 */
 	public CompletionStage<Result> saveUserInfo(String name, List<SearchResult> searchResult)
 	{
+		
 		return FutureConverters.toJava(ask(searchHistoryActor, new UserHistory(name, searchResult), 1000))
 			.thenApply(response -> ok(Json.toJson(response)));
 	}
 
 	@Inject
 	private HttpExecutionContext httpExecutionContext;
-
+	
+	/**
+	 * return youtube search result
+	 * @param term
+	 * @return
+	 * @author Hussein
+	 */
 	private CompletionStage<List<SearchResultItem>> calculateResponse(String term)
 	{
-		
-			   CompletableFuture.completedFuture(youTubeService.getSearchResult(term,20L));
+			   //CompletableFuture.completedFuture(youTubeService.getSearchResult(term,20L));
 		return CompletableFuture.completedFuture(youTubeService.getSearchResult(term));
 				
 	}
 
-	/*create a new search*/
+	/**
+	 * search for youtube term and update search results list
+	 * @author Hussein
+	 */
 	public CompletionStage<Result> getResultWithTerm(String term, Http.Request request)
 	{
-
 		return calculateResponse(term)
 			.thenApplyAsync(
 				answer -> {
@@ -160,18 +190,30 @@ public class HomeController extends Controller
 	/*
 	 * already bind to "ws://localhost:9000/ws/{termName}"
 	 * */
+	/**
+	 * search for youtube using Websocket and Actor flow
+	 * @author Hussein
+	 */
 	public WebSocket socket(String termName)
 	{
 		return WebSocket.Json
 			.acceptOrResult(this::createActorFlow);
 	}
 
+	/**
+	 * execute Actor flow 
+	 * @author Hussein
+	 */
 	private CompletionStage<F.Either<Result, Flow<JsonNode, JsonNode, ?>>> createActorFlow(Http.RequestHeader request)
 	{
 		return CompletableFuture.completedFuture(
 			F.Either.Right(createFlowForActor()));
 	}
 
+	/**
+	 * create Actor flow 
+	 * @author Hussein
+	 */
 	private Flow<JsonNode, JsonNode, ?> createFlowForActor()
 	{
 		return ActorFlow.actorRef(Supervisor::getProps1, actorSystem, materializer);
@@ -282,33 +324,45 @@ public class HomeController extends Controller
 
 	public void addSearchResults(List<SearchResultItem> termResult, String term, String userSeesionId)
 	{
-		//
-		SearchResult sResult = new SearchResult();
-		List<SearchResultItem> items = new ArrayList<>();
 		List<SearchResultItem> prev_items = getPreviouseSearchResult(term);
 		if (prev_items != null)
 		{
-			items.addAll(prev_items);
+			prev_items.addAll(termResult);
+			prev_items=prev_items.stream().distinct().collect(Collectors.toList());
+			prev_items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
 		}
 		else
 		{
+			SearchResult sResult = new SearchResult();
+			List<SearchResultItem> items = new ArrayList<>();
 			items.addAll(termResult);
 			items.sort(Comparator.comparing(SearchResultItem::getSimilarity).reversed());
+			sResult.setItems(items);
+			sResult.setTerm(term);
+			if (searchResults == null)
+			{
+				searchResults = new ArrayList<SearchResult>();
+			}
+			searchResults.add(sResult);
 		}
-		sResult.setItems(items);
-		sResult.setTerm(term);
-		searchResults.add(sResult);
 
-		List<SearchResult> searchResults = new ArrayList<SearchResult>();
-		searchResults.add(sResult);
-		saveUserInfo(userSeesionId, searchResults);
 	}
 	/**
-	 * addSearchResultsForAdd
+	 * add Search Results 
 	 * @author Jagan
 	 */
 	public void addSearchResultsForAdd(List<SearchResultItem> termResult, String term)
 	{
+		termResult.stream()
+				.forEach(x -> {
+						FutureConverters.toJava(ask(SentimentActor, new SentimentAPIActor.Sentiment(x.getComments(),null), 100))
+						.thenApply( y ->{
+										x.setSentiment(((Integer)y).intValue());
+										System.out.println("SentimentAPIActor returns=" + y); 
+										return y;
+										});
+				 }
+				);
 		
 		List<SearchResultItem> prev_items = getPreviouseSearchResult(term);
 		if (prev_items != null)

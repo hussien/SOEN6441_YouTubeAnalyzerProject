@@ -274,12 +274,12 @@ public class YoutubeAPI
 							System.out.println("CommentsSentiment="+res);
 							sri.setSentiment(SentimentAPI.getCommentsSentiment(x));
 							
-							ActorSystem<SentimentAPIActor.Sentiment> SentActor = ActorSystem.create(SentimentAPIActor.create(), "SimilarityAPIActor");
-							//ActorSystem<SentimentAPIActor.Sentiment> SentReplyActor = ActorSystem.create(SentimentAPIActor.create(), "SentReplyActor ");
-							Sentiment mysent=new Sentiment(x,null);
-							SentActor.tell(mysent);
-							System.out.println("mysent object class="+mysent.getSentiment_class());							
-							sri.setSentiment(mysent.getSentiment_class());							
+//							ActorSystem<SentimentAPIActor.Sentiment> SentActor = ActorSystem.create(SentimentAPIActor.create(), "SimilarityAPIActor");
+//							//ActorSystem<SentimentAPIActor.Sentiment> SentReplyActor = ActorSystem.create(SentimentAPIActor.create(), "SentReplyActor ");
+//							Sentiment mysent=new Sentiment(x,null);
+//							SentActor.tell(mysent);
+//							System.out.println("mysent object class="+mysent.getSentiment_class());							
+//							sri.setSentiment(mysent.getSentiment_class());							
 							return x;
 						});
 					////////////////////////////

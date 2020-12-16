@@ -16,7 +16,7 @@ import akka.actor.typed.javadsl.Receive;
  * Sentiment Actor 
  * @author Hussein
  */
-public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentiment>
+public class SentimentAPIActor extends AbstractActor
 {
 	/**
 	 * Sentiment Message 
@@ -50,56 +50,44 @@ public class SentimentAPIActor extends AbstractBehavior<SentimentAPIActor.Sentim
 	{
 		return Props.create(SentimentAPIActor.class);
 	}
-	
-	/**
-	 * Sentiment Actor create 
-	 * @author Hussein
-	 */
-	public static Behavior<SentimentAPIActor.Sentiment> create()
-	{
-		return Behaviors.setup((ctx) -> new SentimentAPIActor(ctx));
-	}
 
-	public SentimentAPIActor(ActorContext context)
-	{
-		super(context);
-	}
-	/*@Override
+	
+	@Override
 	public Receive createReceive()
 	{
 		return receiveBuilder()
 			.match(
 				Sentiment.class,
 				sent -> {
-					int Sentiment_class=SentimentAPI.getCommentsSentiment(sent.lst_comments);
-					sent.setSentiment_class(Sentiment_class);
+					Integer Sentiment_class=SentimentAPI.getCommentsSentiment(sent.lst_comments);
+					//sent.setSentiment_class(Sentiment_class);
 					sender().tell(Sentiment_class, self());
 				})
 			.build();
-	}*/
+	}
 
 	
 	
 	/**
 	 * Sentiment Actor receive 
 	 * @author Hussein
-	 */
-	@Override
-	public Receive<SentimentAPIActor.Sentiment> createReceive()
-	{
-		return newReceiveBuilder().onMessage(Sentiment.class, this::measureSentiment).build();
-	}
+//	 */
+//	@Override
+//	public Receive<SentimentAPIActor.Sentiment> createReceive()
+//	{
+//		return newReceiveBuilder().onMessage(Sentiment.class, this::measureSentiment).build();
+//	}
 
 	/**
 	 * Sentiment Actor measure Sentiment class
 	 * @author Hussein
 	 */
-	private Behavior<Sentiment> measureSentiment(Sentiment message)
-	{
-			int Sentiment_class=SentimentAPI.getCommentsSentiment(message.lst_comments);
-			message.setSentiment_class(Sentiment_class);
-			if(message.replyTo!=null)
-				message.replyTo.tell(message);
-		return this;
-	}
+//	private Behavior<Sentiment> measureSentiment(Sentiment message)
+//	{
+//			int Sentiment_class=SentimentAPI.getCommentsSentiment(message.lst_comments);
+//			message.setSentiment_class(Sentiment_class);
+//			if(message.replyTo!=null)
+//				message.replyTo.tell(message);
+//		return this;
+//	}
 }

@@ -1,2 +1,4 @@
-[0m[[0m[0minfo[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\com\actors\SentimentAPIActor.java: F:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\com\actors\SentimentAPIActor.java uses unchecked or unsafe operations.[0m
-[0m[[0m[0minfo[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\com\actors\SentimentAPIActor.java: Recompile with -Xlint:unchecked for details.[0m
+[0m[[0m[31merror[0m] [0m[0mF:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\controllers\HomeController.java:324:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   method intValue()[0m
+[0m[[0m[31merror[0m] [0m[0m  location: variable y of type java.lang.Object[0m
+[0m[[0m[31merror[0m] [0m[0my.intValue[0m

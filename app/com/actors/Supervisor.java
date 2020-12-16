@@ -13,6 +13,9 @@ import service.YouTubeService;
 import static akka.actor.SupervisorStrategy.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Hussein
+ */
 public class Supervisor extends AbstractActor
 {
 
@@ -52,6 +55,10 @@ public class Supervisor extends AbstractActor
 			.build();
 	}
 
+	/**
+	 * OneForOneStrategy SupervisorStrategy
+	 * @author Hussein 
+	 */
 	@Override
 	public SupervisorStrategy supervisorStrategy()
 	{
