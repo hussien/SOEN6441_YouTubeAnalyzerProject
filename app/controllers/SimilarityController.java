@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -83,7 +85,7 @@ public class SimilarityController extends Controller
 
 	public CompletionStage<Result> similarity(String term, Http.Request request)
 	{
-		String userSeesionId = "";
+/*		String userSeesionId = "";
 		Form<Search> filledForm = form.bindFromRequest(request);
 
 		HashMap<String, String> session_map = new HashMap<>();
@@ -129,6 +131,38 @@ public class SimilarityController extends Controller
 
 			});
 		}
+		*/
+		
+		String userSeesionId = "";
+		Form<Search> filledForm = form.bindFromRequest(request);
+
+		HashMap<String, String> session_map = new HashMap<>();
+		session_map.put("sid", userSeesionId);
+
+		List<TitleAndCount> searchResults = new ArrayList();
+
+		SearchListResponse resp = api.search(term, "", 100L);
+
+		if (resp != null && resp.getItems() != null && resp.getItems().size() > 0)
+		{
+			List<String> list = new ArrayList<>();
+			resp.getItems().stream().forEach(n -> {
+				String title = n.getSnippet().getTitle();
+				Arrays.stream(title.split(" ")).forEach(x -> {
+					if(x.trim().length()>1)
+						list.add(x);
+				});
+			});
+				
+			Map<String, Long> counted = list.stream()
+		    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+			
+			
+			counted.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+			.forEach(x -> searchResults.add(new TitleAndCount(x.getKey(),""+x.getValue())));
+				
+		 }	 
+
 
 		return calculateResponse(filledForm.get().getTerm())
 			.thenApplyAsync(

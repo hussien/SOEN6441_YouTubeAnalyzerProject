@@ -1,1 +1,54 @@
-[0m[[0m[0mdebug[0m] [0m[0mNo changes[0m
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial source changes: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	removed:Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(F:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\models\TitleAndCount.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(models.TitleAndCount)[0m
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(models.TitleAndCount)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(F:\github_repos\SOEN6441_YouTubeAnalyzerProject\app\models\TitleAndCount.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: models.TitleAndCount[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Java source to F:\github_repos\SOEN6441_YouTubeAnalyzerProject\target\scala-2.13\classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@1aba933c directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 1.615703206 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.148530842 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 1.793083517 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone compiling.[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from models.TitleAndCount...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: models.TitleAndCount[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(models.TitleAndCount)[0m
+[0m[[0m[0mdebug[0m] [0m[0mName hashing optimization doesn't apply to non-Scala dependency: controllers.SimilarityController[0m
+[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of views.html.similarity. This dependency is not being considered for invalidation.[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(models.TitleAndCount,ModifiedNames(changes = UsedName(models;TitleAndCount;init;,[Default]))) invalidates 2 classes due to The models.TitleAndCount has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(models;TitleAndCount;init;,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m	> by transitive inheritance: Set(models.TitleAndCount)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	> [0m
+[0m[[0m[0mdebug[0m] [0m[0m	> by member reference: Set(controllers.SimilarityController)[0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set(controllers.SimilarityController)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: controllers.SimilarityController[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncluding router.Routes by controllers.SimilarityController[0m
+[0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated classes: controllers.SimilarityController[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: controllers.SimilarityController[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Java source to F:\github_repos\SOEN6441_YouTubeAnalyzerProject\target\scala-2.13\classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@1aba933c directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 1.01837631 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.320904564 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 1.35714449 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone compiling.[0m
+[0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m

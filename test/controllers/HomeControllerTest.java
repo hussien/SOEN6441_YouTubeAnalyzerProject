@@ -15,7 +15,7 @@ import play.libs.ws.*;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.test.WithApplication;
-
+import controllers.*;
 /**
  * this class represents the test class for main controller
  * application routing. it contains a test method for
@@ -51,6 +51,8 @@ public class HomeControllerTest extends WithApplication
 	@Test
 	public void testIndex()
 	{
+		HomeController hc=new HomeController();
+		
 		Http.RequestBuilder request = new Http.RequestBuilder()
 			.method(GET)
 			.uri("/");

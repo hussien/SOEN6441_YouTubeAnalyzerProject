@@ -54,3 +54,8 @@ compile
 run
 compile
 run
+compile
+run
+test
+jacoc
+jacoco

@@ -5,6 +5,14 @@ public class TitleAndCount
 
 	private String title;
 	private String count;
+	public TitleAndCount()
+	{}
+	
+	public TitleAndCount(String t,String c)
+	{
+		this.title=t;
+		this.count=c;
+	}
 
 	public String getTitle()
 	{
