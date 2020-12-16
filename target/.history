@@ -59,4 +59,4 @@ run
 test
 jacoc
 jacoco
-run
+test

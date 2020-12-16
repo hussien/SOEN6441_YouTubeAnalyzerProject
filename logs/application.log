@@ -56,3 +56,6 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[incompatible typ
     play.filters.hosts.AllowedHostsFilter
 
 2020-12-16 22:22:06 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2020-12-16 22:29:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2020-12-16 22:29:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2020-12-16 22:29:48 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks

@@ -51,7 +51,6 @@ public class HomeControllerTest extends WithApplication
 	@Test
 	public void testIndex()
 	{
-		HomeController hc=new HomeController();
 		
 		Http.RequestBuilder request = new Http.RequestBuilder()
 			.method(GET)

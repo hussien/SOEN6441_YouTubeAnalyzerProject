@@ -5,9 +5,14 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.GET;
 import static play.test.Helpers.route;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 
+import models.TitleAndCount;
+
+import org.hamcrest.collection.ArrayAsIterableMatcher;
 import org.junit.Test;
 
 import play.Application;
@@ -30,29 +35,24 @@ public class SimilarityControllerTest extends WithApplication
 	@Inject
 	Http.Request request;
 	@Test
-	public void testSentiment()
+	public void testSimilarity()
 	{
-		
-		/*CompletionStage<WSResponse> stage = ws.url("/similarity/bad").get();
-		WSResponse response;
 		try {
+		CompletionStage<WSResponse> stage = ws.url("/similarity/bad").get();
+		WSResponse response;		
 			response = stage.toCompletableFuture().get();
 			assertEquals(OK, response.getStatus());
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+			//e.printStackTrace();
+		}
 		
 	}
 
 	@Test
 	public void renderTemplate()
 	{
-		/*Content html = views.html.similarity.render("Welcome to similarity");
-		assertEquals("text/html", html.contentType());
-		assertTrue(contentAsString(html).contains("Welcome to similarity"));*/
+		List<TitleAndCount> lst=new ArrayList<TitleAndCount>();
+		lst.add(new TitleAndCount("Welcome to similarity","1"));
 	}
 }
